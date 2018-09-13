@@ -1,6 +1,6 @@
 export function fetchPersons() {
   return function (dispatch) {
-    fetch(`http://localhost:3000/person`)
+    fetch(`http://localhost:4000/person`)
         .then(function (response) {
             return response.json();
         })
@@ -14,7 +14,7 @@ export function fetchPersons() {
 }
 export function deletePerson(id) {
   return function (dispatch) {
-      fetch(`http://localhost:3000/person/${id}`,
+      fetch(`http://localhost:4000/person/${id}`,
           {
               method: 'DELETE'
           })
@@ -67,7 +67,7 @@ export function changeDate(text) {
 export function addPerson(body) {
 
   return function (dispatch) {
-      fetch(`http://localhost:3000/person`,
+      fetch(`http://localhost:4000/person`,
           {
               method: 'POST',
               headers: {
@@ -92,7 +92,7 @@ export function addPerson(body) {
 export function updatePerson({ id, body }) {
   return function (dispatch) {
     fetch(
-      `http://localhost:3000/${id}`,
+      `http://localhost:4000/${id}`,
       {
         method: 'PUT',
         headers: {

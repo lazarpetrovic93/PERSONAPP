@@ -41,6 +41,6 @@ app.get('/', (req, res) => {
 // Require Person routes
 require('./app/routes/person.routes.js')(app);
 // listen for requests
-app.listen(3000, () => {
-    console.log("Server is listening on port 3000");
+app.listen(4000, () => {
+    console.log("Server is listening on port 4000");
 });
