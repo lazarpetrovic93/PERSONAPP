@@ -1,11 +1,20 @@
-Person App
+# Person App
 
 To run this app first get it from git with:
 git clone `https://github.com/lazarpetrovic93/PERSONAPP`
 
-then: `cd personApp` and `npm install` go inside server folder to do the same:
- `cd server && npm install`
+### Commands to run server (from the root of the project)
 
-type `type cd ..` to go back to react app and run:
-`npm run startServer` to start NodeJS server 
-and `npm run start` to run React App
+`cd server`
+
+`npm install`
+
+`npm start`
+
+### Commands to run front end (from the root of the project)
+
+`cd frontend`
+
+`npm install`
+
+`npm start`
