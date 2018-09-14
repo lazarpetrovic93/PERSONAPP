@@ -26,6 +26,7 @@ class App extends Component {
       phone: this.props.persons.phone,
       createdDate: this.props.persons.createdDate
     });
+
   }
 
   render() {

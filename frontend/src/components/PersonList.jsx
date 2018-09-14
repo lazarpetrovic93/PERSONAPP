@@ -24,6 +24,9 @@ class List extends Component {
   handleClose() {
     this.setState({ show: false });
   }
+  edit() {
+
+  }
 
   editUser(id) {
     this.setState({ show: true });
@@ -32,18 +35,18 @@ class List extends Component {
         return p
       }
     })
-
-    this.setState({ editedName: editedUser[0].name });
-    this.setState({ editedAddres: editedUser[0].address });
-    this.setState({ editedId: editedUser[0]._id });
-    this.setState({ editedPhone: editedUser[0].phone});
-    this.setState({ editedSurName: editedUser[0].surname});
-    this.setState({ editedDate: editedUser[0].createdDate});
-    this.setState({ editedCity: editedUser[0].city});
-
-
+    this.setState({
+      editedName: editedUser[0].name,
+      editedAddres: editedUser[0].address,
+      editedId: editedUser[0]._id,
+      editedPhone: editedUser[0].phone,
+      editedSurName: editedUser[0].surname,
+      editedDate: editedUser[0].createdDate,
+      editedCity: editedUser[0].city
+      }); 
     console.log('editedUser', editedUser)
   }
+
 
   componentWillReceiveProps(nextProps) {
     if(this.props.personsProp !== nextProps.personsProp) {
@@ -57,7 +60,7 @@ class List extends Component {
               <td>{person.surname}</td>
               <td>{person.phone}</td>
               <td>{person.city}</td>
-              <td>{person.adress}</td>
+              <td>{person.address}</td>
               <td>{person.createdDate}</td>
               <td>
                 <Button bsStyle="danger" onClick={() => this.clickDeleteFunc(person) }>Delete</Button>
@@ -70,12 +73,13 @@ class List extends Component {
 
     }
   }
+
   clickDeleteFunc(person) {
     this.props.deletePerson(person._id);
   }
  
   render() {
-    console.log('this.state', this.state)
+    console.log('state:', this.state.editedName, this.state.editedSurName, this.state.editedPhone, this.state.editedDate)
     return (
       <div>
         <div className="list-style">
@@ -111,7 +115,7 @@ class List extends Component {
           type="text"
           value={this.state.editedName}
           placeholder="Enter name"
-          onChange={ (e) => this.props.changeName(e.target.value)}
+          onChange={ (e) => this.setState({editedName: e.target.value})}
         />
       </FormGroup>
       <FormGroup
@@ -121,7 +125,7 @@ class List extends Component {
           type="text"
           value={this.state.editedSurName}
           placeholder="Enter surname"
-          onChange={(e) => this.props.changeSurName(e.target.value)}
+          onChange={ (e) => this.setState({editedSurName: e.target.value})}
         />
       </FormGroup>
       <FormGroup>   
@@ -129,15 +133,15 @@ class List extends Component {
           type="text"
           value={this.state.editedCity}
           placeholder="Enter city"
-          onChange={(e) => this.props.changeCity(e.target.value)}
+          onChange={ (e) => this.setState({editedCity: e.target.value})}
         />
       </FormGroup>
       <FormGroup>   
         <FormControl
           type="text"
-          value={this.state.editedCity}
+          value={this.state.editedAddress}
           placeholder="Enter address"
-          onChange={ (e) => this.props.changeAddress(e.target.value)}
+          onChange={ (e) => this.setState({editedAddres: e.target.value})}
         />
       </FormGroup>
       <FormGroup>
@@ -145,14 +149,14 @@ class List extends Component {
           type="text"
           value={this.state.editedPhone}
           placeholder="Enter phone"
-          onChange={ (e) => this.props.changePhone(e.target.value)}
+          onChange={ (e) => this.setState({editedPhone: e.target.value})}
         />
       </FormGroup >
       <FormGroup>
         <FormControl
           type="text"
           placeholder="Enter date"
-          onChange={ (e) => this.props.changeDate(e.target.value)}
+          onChange={ (e) => this.setState({editedDate: e.target.value})}
         />
       </FormGroup >
     </form >

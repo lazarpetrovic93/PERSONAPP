@@ -5,7 +5,7 @@ const PersonSchema = mongoose.Schema({
     surname: String,
     createdDate: String,
     city: String,
-    adress: String,
+    address: String,
     phone: String
 }, {
     timestamps: true
