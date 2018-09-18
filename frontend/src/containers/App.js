@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   handleSubmit(event) {
-    // event.preventDefault(); 
+    // event.preventDefault();
     this.props.addPerson({
       name: this.props.persons.name,
       surname: this.props.persons.surname,
@@ -40,6 +40,7 @@ class App extends Component {
             <PersonList 
               personsProp={this.props.persons.persons}
               deletePerson={this.props.deletePerson}
+              updatePerson={this.props.updatePerson}
               fetchPersons={this.props.fetchPersons}
               addPerson={this.props.addPerson}
               handleSubmit={this.handleSubmit}
@@ -114,7 +115,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     deletePerson: (id) => {
       dispatch(deletePerson(id))
-    }
+    },
+    updatePerson: (body, id) => {
+      dispatch(updatePerson(body, id))
+    } 
   }
 };
 

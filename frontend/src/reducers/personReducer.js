@@ -27,6 +27,12 @@ const personReducer = (state = initialState, action) => {
         ...state,
         persons: state.persons.concat(action.payload)
       };
+    case 'UPDATE_PERSON':
+    const myUpdatedIndex = state.persons.findIndex(person => person._id === action.payload);
+    console.log('###### index reducer', action.payload)
+      return {
+        persons: state.persons.slice(0, myUpdatedIndex).concat([state.persons[myUpdatedIndex +1]]).concat(state.persons.slice([myUpdatedIndex + 1]))
+      }
     case 'CHANGE_NAME':
       return {
         ...state,

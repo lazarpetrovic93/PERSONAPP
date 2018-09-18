@@ -1,32 +1,4 @@
-export function fetchPersons() {
-  return function (dispatch) {
-    fetch(`http://localhost:4000/person`)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            dispatch({
-                type: 'FETCH_PERSONS',
-                payload: data
-            });
-    })
-  }
-}
-export function deletePerson(id) {
-  return function (dispatch) {
-      fetch(`http://localhost:4000/person/${id}`,
-          {
-              method: 'DELETE'
-          })
-          .then(function () {
-              dispatch({
-                  type: "DELETE_PERSON",
-                  payload: id
-              })
-             
-          })
-  }
-}
+
 export function changeName(text) {
   return {
     type: 'CHANGE_NAME',
@@ -64,6 +36,35 @@ export function changeDate(text) {
   }
 }
 
+export function fetchPersons() {
+  return function (dispatch) {
+    fetch(`http://localhost:4000/person`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            dispatch({
+                type: 'FETCH_PERSONS',
+                payload: data
+            });
+    })
+  }
+}
+export function deletePerson(id) {
+  return function (dispatch) {
+      fetch(`http://localhost:4000/person/${id}`,
+          {
+              method: 'DELETE'
+          })
+          .then(function () {
+              dispatch({
+                  type: "DELETE_PERSON",
+                  payload: id
+              })
+             
+          })
+  }
+}
 export function addPerson(body) {
 
   return function (dispatch) {
@@ -89,17 +90,23 @@ export function addPerson(body) {
   }
 }
 
-export function updatePerson({ id, body }) {
+export function updatePerson(id, body) {
+  console.log('ovo je body iz update person akcija', body)
+  console.log('ovo je body iz update person akcija', id)
   return function (dispatch) {
-    fetch(
-      `http://localhost:4000/${id}`,
+    fetch(`http://localhost:4000/person/${id}`,
       {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         },
-        body
-      })
+        body:  JSON.stringify(body)
+      }).then(function () {
+        dispatch({
+            type: "UPDATE_PERSON",
+            payload: id
+        })
+    })
   }
 }

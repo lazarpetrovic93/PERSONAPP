@@ -9,7 +9,7 @@ class List extends Component {
       editedName: null,
       editedId: null,
       editedPhone: null,
-      editedAddres: null,
+      editedAddress: null,
       editedSurName: null,
       editedDate: null,
       editedCity: null,
@@ -19,15 +19,27 @@ class List extends Component {
     this.clickDeleteFunc = this.clickDeleteFunc.bind(this)
     this.handleClose = this.handleClose.bind(this)
     this.editUser = this.editUser.bind(this)
+    this.saveChanges =  this.saveChanges.bind(this)
   }
 
   handleClose() {
     this.setState({ show: false });
   }
-  edit() {
-
+  saveChanges() {
+    this.handleClose();
+    console.log('$$$ edited id', this.state.editedId)
+    this.props.updatePerson(this.state.editedId,
+      {
+        name: this.state.editedName,
+        surname: this.state.editedSurName,
+        address: this.state.editedAddress,
+        city: this.state.editedCity,
+        phone: this.state.editedPhone,
+        createdDate: this.state.editedDate
+      }
+    );
+  console.log('this props personssssss', this.props.personsProp)
   }
-
   editUser(id) {
     this.setState({ show: true });
     const editedUser = this.props.personsProp.filter(p => {
@@ -37,14 +49,14 @@ class List extends Component {
     })
     this.setState({
       editedName: editedUser[0].name,
-      editedAddres: editedUser[0].address,
+      editedAddress: editedUser[0].address,
       editedId: editedUser[0]._id,
       editedPhone: editedUser[0].phone,
       editedSurName: editedUser[0].surname,
       editedDate: editedUser[0].createdDate,
       editedCity: editedUser[0].city
       }); 
-    console.log('editedUser', editedUser)
+    console.log('editedUser', editedUser);
   }
 
 
@@ -79,7 +91,7 @@ class List extends Component {
   }
  
   render() {
-    console.log('state:', this.state.editedName, this.state.editedSurName, this.state.editedPhone, this.state.editedDate)
+    console.log('state edited id:', this.state.editedId)
     return (
       <div>
         <div className="list-style">
@@ -115,7 +127,7 @@ class List extends Component {
           type="text"
           value={this.state.editedName}
           placeholder="Enter name"
-          onChange={ (e) => this.setState({editedName: e.target.value})}
+          onChange={(e) => this.setState({editedName: e.target.value})}
         />
       </FormGroup>
       <FormGroup
@@ -125,7 +137,7 @@ class List extends Component {
           type="text"
           value={this.state.editedSurName}
           placeholder="Enter surname"
-          onChange={ (e) => this.setState({editedSurName: e.target.value})}
+          onChange={(e) => this.setState({editedSurName: e.target.value})}
         />
       </FormGroup>
       <FormGroup>   
@@ -133,7 +145,7 @@ class List extends Component {
           type="text"
           value={this.state.editedCity}
           placeholder="Enter city"
-          onChange={ (e) => this.setState({editedCity: e.target.value})}
+          onChange={(e) => this.setState({editedCity: e.target.value})}
         />
       </FormGroup>
       <FormGroup>   
@@ -141,7 +153,7 @@ class List extends Component {
           type="text"
           value={this.state.editedAddress}
           placeholder="Enter address"
-          onChange={ (e) => this.setState({editedAddres: e.target.value})}
+          onChange={(e) => this.setState({editedAddres: e.target.value})}
         />
       </FormGroup>
       <FormGroup>
@@ -149,14 +161,15 @@ class List extends Component {
           type="text"
           value={this.state.editedPhone}
           placeholder="Enter phone"
-          onChange={ (e) => this.setState({editedPhone: e.target.value})}
+          onChange={(e) => this.setState({editedPhone: e.target.value})}
         />
       </FormGroup >
       <FormGroup>
         <FormControl
           type="text"
+          value={this.state.editedDate}
           placeholder="Enter date"
-          onChange={ (e) => this.setState({editedDate: e.target.value})}
+          onChange={(e) => this.setState({editedDate: e.target.value})}
         />
       </FormGroup >
     </form >
@@ -164,7 +177,7 @@ class List extends Component {
 
   <Modal.Footer>
     <Button onClick={() => this.handleClose()}>Close</Button>
-    <Button bsStyle="primary">Save changes</Button>
+    <Button onClick={() => this.saveChanges()} bsStyle="primary">Save changes</Button>
   </Modal.Footer>
 </Modal>
         </div>
