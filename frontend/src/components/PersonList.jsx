@@ -27,7 +27,7 @@ class List extends Component {
   }
   saveChanges() {
     this.handleClose();
-    console.log('$$$ edited id', this.state.editedId)
+    // console.log('$$$ edited id', this.state.editedId)
     this.props.updatePerson(this.state.editedId,
       {
         name: this.state.editedName,
@@ -38,7 +38,7 @@ class List extends Component {
         createdDate: this.state.editedDate
       }
     );
-  console.log('this props personssssss', this.props.personsProp)
+  // console.log('this props personssssss', this.props.personsProp)
   }
   editUser(id) {
     this.setState({ show: true });
@@ -56,13 +56,13 @@ class List extends Component {
       editedDate: editedUser[0].createdDate,
       editedCity: editedUser[0].city
       }); 
-    console.log('editedUser', editedUser);
+    // console.log('editedUser', editedUser);
   }
 
 
   componentWillReceiveProps(nextProps) {
     if(this.props.personsProp !== nextProps.personsProp) {
-      console.log('person prop: ', nextProps.personsProp)
+      // console.log('person prop: ', nextProps.personsProp)
       
       this.listPersons = nextProps.personsProp.map(person => {
         if (person){
@@ -153,7 +153,7 @@ class List extends Component {
           type="text"
           value={this.state.editedAddress}
           placeholder="Enter address"
-          onChange={(e) => this.setState({editedAddres: e.target.value})}
+          onChange={(e) => this.setState({editedAddress: e.target.value})}
         />
       </FormGroup>
       <FormGroup>

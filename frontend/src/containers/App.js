@@ -30,6 +30,7 @@ class App extends Component {
   }
 
   render() {
+    // console.log('$$#$#$#', this.props.persons)
     return (
       <div className="App">
         <header className="App-header">
