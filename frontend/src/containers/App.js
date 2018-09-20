@@ -30,7 +30,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log('$$#$#$#', this.props.persons)
     return (
       <div className="App">
         <header className="App-header">
@@ -90,7 +89,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addPerson: (body) => {
-      console.log('#Trigerovano', body);
       dispatch(addPerson(body))
     },
     changeName: (text) => {

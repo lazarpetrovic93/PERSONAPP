@@ -81,7 +81,6 @@ export function addPerson(body) {
               return response.json()
           })
           .then(function ( data ) {
-            // console.log('data', data)
               dispatch({
                   type: "ADD_PERSON",
                   payload: data
@@ -91,8 +90,6 @@ export function addPerson(body) {
 }
 
 export function updatePerson(id, body) {
-  // console.log('ovo je body iz update person akcija', body)
-  // console.log('ovo je body iz update person akcija', id)
   return function (dispatch) {
     fetch(`http://localhost:4000/person/${id}`,
       {
@@ -106,7 +103,6 @@ export function updatePerson(id, body) {
       .then(function (response) {
         return response.json();
       }).then(function (resp) {
-        console.log('reeeeesponseeeee', resp);
         dispatch({
             type: "UPDATE_PERSON",
             payload: {id, resp}
